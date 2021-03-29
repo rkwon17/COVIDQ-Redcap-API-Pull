@@ -1,7 +1,8 @@
-#covid pull non ndar
-#------ PSS DATA -------------------------------------
-#RK wrote script 3/12/21 for covid questionnaire packet
+#RK wrote script 3/12/21 for covid questionnaire packet: pulls all the COVID questionnaire data
+#from redcap and wrangles dataframe to be in analyzable format. 
 
+#contains EPII (initial+monthly), PSS (initial+ monthly), Schooling Q (initial,monthly (TBD)
+#EPII - still needs to be scored (item level + impact)
 
 #install packages if do not have already
 library(magrittr)
@@ -18,12 +19,9 @@ library(tidyverse)
 library(psych)
 library(eeptools)
 library(lubridate)
-
 ###---call API token here (different for each person)------
-
-#redcap api token call
+#redcap api token call (will need to request API token from redcap admin)
 source("~/Desktop/config.R")
-
 ####------- filter for rdocdb eligible and filter out excluded subjects------
 subjlist_erp<- c("subj","eligibility", "exclusion_criteria")
 eligible_erp <- redcap_read(
@@ -1650,14 +1648,11 @@ mutate(epii21=case_when(
          epii_stressors=covid_mo_epii_stressors,epii_other=covid_mo_epii_other
          ) %>%
   relocate(epii42,.after=epii41)%>%relocate(epii43,.after=epii42)
-
-
 #monthly data clean 
 #for (i in seq_along(epii_months)){
 #  print(names(epii_months)[[i]])
  # print("sick")
 #}
-
 
 ###--- long to wide: edit for each month going forward) ------
 #rename redcap event name to months
@@ -1677,13 +1672,11 @@ epii_months <- epii_months %>%
 #calc age (fix later)
 
 ###---write csv---------------
-#wide
+#wide (need to figure out)
 #long
 write.csv(epii,"/Users/rachelkwon/Desktop/covid/epii_long.csv",na = "")
 write.csv(epii_months,"/Users/rachelkwon/Desktop/covid/epiimonthly_long.csv",na = "")
 ###PSS API PULLL-----------------------------------------------------------------------------
-
-
 #initial PSS 
 pssi_erp <- c("subj","covid1_date","ques_respondent_covid1","covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4","covid1_pss5","covid1_pss6","covid1_pss7","covid1_pss8","covid1_pss9","covid1_pss10")
 pssiERP <- redcap_read(
@@ -1752,31 +1745,24 @@ pss_month <- pss_month %>%
 
 keys <- c(1,1,1,-1,-1,1,-1,-1,1,1)
 
-
 pss_score<- pss[,c("covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4","covid1_pss5","covid1_pss6","covid1_pss7","covid1_pss8","covid1_pss9","covid1_pss10")]
 pss_score1 <- reverse.code(keys,pss_score)
 pss_score1 <- as.data.frame(pss_score1)
 
-
 #score the pss data
 pss_initial$pss_init_total<- rowSums(pss_score1[,c("covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4-","covid1_pss5-","covid1_pss6","covid1_pss7-","covid1_pss8-","covid1_pss9","covid1_pss10")])
 
-#sanity check (randomly score data manually to confirm that this is correct)
-
-
+#sanity check (randomly score data manually to confirm that this is correct
 describe(pss$pss_init_total)
 ggplot(pss, mapping = aes(x = pss_init_total)) + geom_histogram()
-
 
 ###---- monthly PSS syntax-------
 pss_mo_score<- pss_month[,c("covid_mo_pss1","covid_mo_pss2","covid_mo_pss3","covid_mo_pss4","covid_mo_pss5","covid_mo_pss6","covid_mo_pss7","covid_mo_pss8","covid_mo_pss9","covid_mo_pss10")]
 pss_score_monthly <- reverse.code(keys,pss_mo_score)
 pss_score_monthly <- as.data.frame(pss_score_monthly)
-
 pss_month$pss_month_totalsc<- rowSums(pss_score_monthly[,c("covid_mo_pss1","covid_mo_pss2","covid_mo_pss3","covid_mo_pss4-","covid_mo_pss5-","covid_mo_pss6","covid_mo_pss7-","covid_mo_pss8-","covid_mo_pss9","covid_mo_pss10")])
 
 ###----write pss csv----------
-
 write.csv(pss,"/Users/rachelkwon/Desktop/covid/pss.csv",na='')
 write.csv(pss_month,"/Users/rachelkwon/Desktop/covid/pss_month.csv",na='')
 
@@ -1846,7 +1832,6 @@ school_monthly<-school_monthly[!is.na(school_monthly$covid_mo_date), ] %>%
   filter(redcap_event_name=="covid_questionnair_arm_1d") %>% filter(covid_school_child_v2==0)%>%
   select(-DOBm,-DOBi,-DOBf,-eligibility)#filters only the 1 child in study
 
-
 school_monthly <- school_monthly %>%
   mutate(month_admin = case_when(
     redcap_event_name == "covid_questionnair_arm_1b" ~ "1",
@@ -1861,7 +1846,6 @@ school_monthly <- school_monthly %>%
 ###-write csv for schooling q----------
 write.csv(school_init,"/Users/rachelkwon/Desktop/covid/school_init.csv",na='')
 write.csv(school_monthly,"/Users/rachelkwon/Desktop/covid/school_monthly.csv",na='')
-
 ###-------data request merge----------------------------------------------------------
 library(lubridate)
 merge1<-left_join(epii,pss,by=c("covid1_date"="covid1_date",'subj'='subj'))
@@ -1877,9 +1861,12 @@ merge1<-merge1%>%select(-DOBi,-DOBf,-DOBm,)%>%
 select(-redcap_event_name)%>%
   relocate(month_admin,.after="DOBm")
 
-
 write.csv(merge1,"/Users/rachelkwon/Desktop/covid/initialfull.csv",na='')
 write.csv(merge2,"/Users/rachelkwon/Desktop/covid/monthlyfull.csv",na='')
+
+###-----helper functions------
+#standardize dates
+date_mdy<- function(x){ as.Date(x, format = "%m-%d-%Y") }
 
 #calc age fuction - need to add in separate script that calls
 calc_age <- function(birthDate, refDate = Sys.Date(), unit = "year") {
@@ -1900,71 +1887,3 @@ calc_age <- function(birthDate, refDate = Sys.Date(), unit = "year") {
   }
   
 }
-
-###---- SCARED ------- 
-
-
-#SCARED P 
-
-scaredplist <- c("subj","scared_p_date","scared_p_1","scared_p_2","scared_p_3","scared_p_4","scared_p_5","scared_p_6","scared_p_7","scared_p_8","scared_p_9",
-                 "scared_p_10","scared_p_11","scared_p_12","scared_p_13","scared_p_14","scared_p_15","scared_p_16","scared_p_17","scared_p_18",
-                 "scared_p_19","scared_p_20","scared_p_21","scared_p_22","scared_p_23","scared_p_24","scared_p_25","scared_p_26","scared_p_27",
-                 "scared_p_28","scared_p_29","scared_p_30","scared_p_31","scared_p_32","scared_p_33","scared_p_35","scared_p_36","scared_p_37","scared_p_38","scared_p_39","scared_p_40","scared_p_41", 
-                 'scared_p_1','scared_p_6',"scared_p_9","scared_p_12","scared_p_15","scared_p_18","scared_p_19","scared_p_19","scared_p_22","scared_p_24",
-                 "scared_p_27","scared_p_30","scared_p_34","scared_p_38",
-                 "scared_p_5","scared_p_7","scared_p_14","scared_p_21","scared_p_23","scared_p_28","scared_p_33","scared_p_35","scared_p_37",
-                 "scared_p_4","scared_p_8","scared_p_13","scared_p_16","scared_p_20","scared_p_25","scared_p_29","scared_p_31",
-                 "scared_p_3","scared_p_10","scared_p_26","scared_p_32","scared_p_39","scared_p_40","scared_p_41",
-                 "scared_p_2","scared_p_11","scared_p_17","scared_p_17","scared_p_36")
-
-scaredpERP<- redcap_read(
-  redcap_uri = uri, 
-  token      = tokenerp, 
-  fields     = scaredplist
-)$data
-
-
-scaredpNIRS<- redcap_read(
-  redcap_uri = uri, 
-  token      = tokennirs, 
-  fields     = scaredplist
-)$data
-
-scaredpERP <- scaredpERP %>%
-  filter(redcap_event_name=="7year_visit_arm_1")
-scaredpNIRS<- scaredpNIRS%>%
-  filter(redcap_event_name=="7year_visit_arm_1")
-
-scaredPcomb<- full_join(scaredpERP,scaredpNIRS)
-#exclude ineligible subjects
-scaredP <- left_join(fullsubjlist,scaredPcomb)
-scaredPfull <- scaredP[!is.na(scaredP$scared_p_date), ]
-
-#rachel note: 1/6/21 - probably will need to score using SPSS (not use R )
-
-
-keylist <- list(subj=c("subj"),
-                TS = c("scared_p_1","scared_p_2","scared_p_3","scared_p_4","scared_p_5","scared_p_6","scared_p_7","scared_p_8","scared_p_9",
-                       "scared_p_10","scared_p_11","scared_p_12","scared_p_13","scared_p_14","scared_p_15","scared_p_16","scared_p_17","scared_p_18",
-                       "scared_p_19","scared_p_20","scared_p_21","scared_p_22","scared_p_23","scared_p_24","scared_p_25","scared_p_26","scared_p_27",
-                       "scared_p_28","scared_p_29","scared_p_30","scared_p_31","scared_p_32","scared_p_33","scared_p_35","scared_p_36","scared_p_37","scared_p_38","scared_p_39","scared_p_40","scared_p_41"), 
-                PD = c('scared_p_1','scared_p_6',"scared_p_9","scared_p_12","scared_p_15","scared_p_18","scared_p_19","scared_p_19","scared_p_22","scared_p_24",
-                       "scared_p_27","scared_p_30","scared_p_34","scared_p_38"
-                ), GAD=c("scared_p_5","scared_p_7","scared_p_14","scared_p_21","scared_p_23","scared_p_28","scared_p_33","scared_p_35","scared_p_37"),
-                SEP = c("scared_p_4","scared_p_8","scared_p_13","scared_p_16","scared_p_20","scared_p_25","scared_p_29","scared_p_31"),
-                SOC=c("scared_p_3","scared_p_10","scared_p_26","scared_p_32","scared_p_39","scared_p_40","scared_p_41"),
-                SCH= c("scared_p_2","scared_p_11","scared_p_17","scared_p_17","scared_p_36"))
-
-#score the parent SCARED
-scaredP_scale <- scoreItems(keylist,scaredPfull,totals=TRUE, missing=FALSE)
-scaredP_scores <- scaredP_scale$scores
-scaredP_scores_df <- as.data.frame(scaredP_scores)
-
-
-###-----helper functions------
-
-#standardize dates
-
-date_mdy<- function(x){ as.Date(x, format = "%m-%d-%Y") }
-
-
