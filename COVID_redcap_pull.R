@@ -105,8 +105,20 @@ epii <- epii_initial[!is.na(epii_initial$covid1_date), ]
 ### clean matrices for initial epii --------------
 
 #for now hard coding this but see if can be placed in a for loop or make shorter code
+#can select more than one (so will need to fix)
+
+
+#numSeq <- c(seq(5,45,4),50,54,seq(59,107,4),seq(112,148,4),seq(153,169,4),seq(176,196,4),
+ #           seq(201,229,4),seq(234,262,4),seq(257,295,4),seq(300,372,4))
+#goes through each of the items, and if responded yes for 'me' or 'person in home' coded as 1
+#for (i in itemlistMessy) {
+#  dataReady[,i] <- pmax(dataReady[,i], dataReady[,i+1])
+ # colnames(dataReady)[i] <- substr(colnames(dataReady[i]), 1, nchar(colnames(dataReady[i]))-4)
+#}
+
 epii <- epii %>% 
   mutate(epii_init_1=case_when(
+    (covid1_epii_1___1=='1' & covid1_epii_1___2=='1')~ '3',
     covid1_epii_1___1=='1'~'1',
     covid1_epii_1___2=='1'~'2',
     covid1_epii_1___0=='1'~'0',
@@ -115,6 +127,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_1___1, -covid1_epii_1___2, -covid1_epii_1___0,-covid1_epii_1___9) %>%
   mutate(epii_init_2=case_when(
+    (covid1_epii_2___1=='1' & covid1_epii_2___2=='1')~ '3',
     covid1_epii_2___1=='1'~'1',
     covid1_epii_2___2=='1'~'2',
     covid1_epii_2___0=='1'~'0',
@@ -123,6 +136,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_2___1, -covid1_epii_2___2, -covid1_epii_2___0,-covid1_epii_2___9) %>%
   mutate(epii_init_3=case_when(
+    (covid1_epii_3___1=='1' & covid1_epii_3___2=='1')~ '3',
     covid1_epii_3___1=='1'~'1',
     covid1_epii_3___2=='1'~'2',
     covid1_epii_3___0=='1'~'0',
@@ -131,6 +145,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_3___1, -covid1_epii_3___2, -covid1_epii_3___0,-covid1_epii_3___9) %>%
   mutate(epii_init_4=case_when(
+    (covid1_epii_4___1=='1' & covid1_epii_4___2=='1')~ '3',
     covid1_epii_4___1=='1'~'1',
     covid1_epii_4___2=='1'~'2',
     covid1_epii_4___0=='1'~'0',
@@ -139,6 +154,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_4___1, -covid1_epii_4___2, -covid1_epii_4___0,-covid1_epii_4___9) %>%
   mutate(epii_init_5=case_when(
+    (covid1_epii_5___1=='1' & covid1_epii_5___2=='1')~ '3',
     covid1_epii_5___1=='1'~'1',
     covid1_epii_5___2=='1'~'2',
     covid1_epii_5___0=='1'~'0',
@@ -147,6 +163,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_5___1, -covid1_epii_5___2, -covid1_epii_5___0,-covid1_epii_5___9) %>%
   mutate(epii_init_6=case_when(
+    (covid1_epii_6___1=='1' & covid1_epii_6___2=='1')~ '3',
     covid1_epii_6___1=='1'~'1',
     covid1_epii_6___2=='1'~'2',
     covid1_epii_6___0=='1'~'0',
@@ -155,6 +172,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_6___1, -covid1_epii_6___2, -covid1_epii_6___0,-covid1_epii_6___9) %>%
   mutate(epii_init_7=case_when(
+    (covid1_epii_7___1=='1' & covid1_epii_7___2=='1')~ '3',
     covid1_epii_7___1=='1'~'1',
     covid1_epii_7___2=='1'~'2',
     covid1_epii_7___0=='1'~'0',
@@ -163,6 +181,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_7___1, -covid1_epii_7___2, -covid1_epii_7___0,-covid1_epii_7___9) %>%
   mutate(epii_init_8=case_when(
+    (covid1_epii_8___1=='1' & covid1_epii_8___2=='1')~ '3',
     covid1_epii_8___1=='1'~'1',
     covid1_epii_8___2=='1'~'2',
     covid1_epii_8___0=='1'~'0',
@@ -171,6 +190,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_8___1, -covid1_epii_8___2, -covid1_epii_8___0,-covid1_epii_8___9) %>%
   mutate(epii_init_9=case_when(
+    (covid1_epii_9___1=='1' & covid1_epii_9___2=='1')~ '3',
     covid1_epii_9___1=='1'~'1',
     covid1_epii_9___2=='1'~'2',
     covid1_epii_9___0=='1'~'0',
@@ -179,6 +199,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_9___1, -covid1_epii_9___2, -covid1_epii_9___0,-covid1_epii_9___9) %>%
   mutate(epii_init_10=case_when(
+    (covid1_epii_10___1=='1' & covid1_epii_10___2=='1')~ '3',
     covid1_epii_10___1=='1'~'1',
     covid1_epii_10___2=='1'~'2',
     covid1_epii_10___0=='1'~'0',
@@ -187,6 +208,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_10___1, -covid1_epii_10___2, -covid1_epii_10___0,-covid1_epii_10___9) %>%
   mutate(epii_init_11=case_when(
+    (covid1_epii_11___1=='1' & covid1_epii_11___2=='1')~ '3',
     covid1_epii_11___1=='1'~'1',
     covid1_epii_11___2=='1'~'2',
     covid1_epii_11___0=='1'~'0',
@@ -195,6 +217,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii_11___1, -covid1_epii_11___2, -covid1_epii_11___0,-covid1_epii_11___9) %>%
   mutate(epii_init_12=case_when(
+    (covid1_epii_12___1=='1' & covid1_epii_12___2=='1')~ '3',
     covid1_epii_12___1=='1'~'1',
     covid1_epii_12___2=='1'~'2',
     covid1_epii_12___0=='1'~'0',
@@ -203,6 +226,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii_12___1, -covid1_epii_12___2, -covid1_epii_12___0,-covid1_epii_12___9) %>%
   mutate(epii_init_13=case_when(
+    (covid1_epii_13___1=='1' & covid1_epii_13___2=='1')~ '3',
     covid1_epii_13___1=='1'~'1',
     covid1_epii_13___2=='1'~'2',
     covid1_epii_13___0=='1'~'0',
@@ -211,6 +235,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii_13___1, -covid1_epii_13___2, -covid1_epii_13___0,-covid1_epii_13___9) %>%
   mutate(epii_init_14=case_when(
+    (covid1_epii14___1=='1' & covid1_epii14___2=='1')~ '3',
     covid1_epii14___1=='1'~'1',
     covid1_epii14___2=='1'~'2',
     covid1_epii14___0=='1'~'0',
@@ -219,6 +244,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii14___1, -covid1_epii14___2, -covid1_epii14___0,-covid1_epii14___9) %>%
   mutate(epii_init_15=case_when(
+    (covid1_epii15___1=='1' & covid1_epii15___2=='1')~ '3',
     covid1_epii15___1=='1'~'1',
     covid1_epii15___2=='1'~'2',
     covid1_epii15___0=='1'~'0',
@@ -227,6 +253,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii15___1, -covid1_epii15___2, -covid1_epii15___0,-covid1_epii15___9) %>%
   mutate(epii_init_16=case_when(
+    (covid1_epii16___1=='1' & covid1_epii16___2=='1')~ '3',
     covid1_epii16___1=='1'~'1',
     covid1_epii16___2=='1'~'2',
     covid1_epii16___0=='1'~'0',
@@ -235,6 +262,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii16___1, -covid1_epii16___2, -covid1_epii16___0,-covid1_epii16___9) %>%
   mutate(epii_init_17=case_when(
+    (covid1_epii17___1=='1' & covid1_epii17___2=='1')~ '3',
     covid1_epii17___1=='1'~'1',
     covid1_epii17___2=='1'~'2',
     covid1_epii17___0=='1'~'0',
@@ -243,6 +271,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii17___1, -covid1_epii17___2, -covid1_epii17___0,-covid1_epii17___9) %>%
   mutate(epii_init_18=case_when(
+    (covid1_epii18___1=='1' & covid1_epii18___2=='1')~ '3',
     covid1_epii18___1=='1'~'1',
     covid1_epii18___2=='1'~'2',
     covid1_epii18___0=='1'~'0',
@@ -251,6 +280,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii18___1, -covid1_epii18___2, -covid1_epii18___0,-covid1_epii18___9) %>%
   mutate(epii_init_19=case_when(
+    (covid1_epii19___1=='1' & covid1_epii19___2=='1')~ '3',
     covid1_epii19___1=='1'~'1',
     covid1_epii19___2=='1'~'2',
     covid1_epii19___0=='1'~'0',
@@ -259,6 +289,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii19___1, -covid1_epii19___2, -covid1_epii19___0,-covid1_epii19___9) %>%
   mutate(epii_init_20=case_when(
+    (covid1_epii20___1=='1' & covid1_epii20___2=='1')~ '3',
     covid1_epii20___1=='1'~'1',
     covid1_epii20___2=='1'~'2',
     covid1_epii20___0=='1'~'0',
@@ -267,6 +298,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii20___1, -covid1_epii20___2, -covid1_epii20___0,-covid1_epii20___9) %>%
   mutate(epii_init_21=case_when(
+    (covid1_epii21___1=='1' & covid1_epii21___2=='1')~ '3',
     covid1_epii21___1=='1'~'1',
     covid1_epii21___2=='1'~'2',
     covid1_epii21___0=='1'~'0',
@@ -275,6 +307,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii21___1, -covid1_epii21___2, -covid1_epii21___0,-covid1_epii21___9) %>%
   mutate(epii_init_22=case_when(
+    (covid1_epii22___1=='1' & covid1_epii22___2=='1')~ '3',
     covid1_epii22___1=='1'~'1',
     covid1_epii22___2=='1'~'2',
     covid1_epii22___0=='1'~'0',
@@ -283,6 +316,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii22___1, -covid1_epii22___2, -covid1_epii22___0,-covid1_epii22___9) %>%
   mutate(epii_init_23=case_when(
+    (covid1_epii23___1=='1' & covid1_epii23___2=='1')~ '3',
     covid1_epii23___1=='1'~'1',
     covid1_epii23___2=='1'~'2',
     covid1_epii23___0=='1'~'0',
@@ -291,6 +325,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii23___1, -covid1_epii23___2, -covid1_epii23___0,-covid1_epii23___9) %>%
   mutate(epii_init_24=case_when(
+    (covid1_epii24___1=='1' & covid1_epii24___2=='1')~ '3',
     covid1_epii24___1=='1'~'1',
     covid1_epii24___2=='1'~'2',
     covid1_epii24___0=='1'~'0',
@@ -299,6 +334,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii24___1, -covid1_epii24___2, -covid1_epii24___0,-covid1_epii24___9) %>%
   mutate(epii_init_25=case_when(
+    (covid1_epii25___1=='1' & covid1_epii25___2=='1')~ '3',
     covid1_epii25___1=='1'~'1',
     covid1_epii25___2=='1'~'2',
     covid1_epii25___0=='1'~'0',
@@ -307,6 +343,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii25___1, -covid1_epii25___2, -covid1_epii25___0,-covid1_epii25___9) %>%
   mutate(epii_init_26=case_when(
+    (covid1_epii26___1=='1' & covid1_epii26___2=='1')~ '3',
     covid1_epii26___1=='1'~'1',
     covid1_epii26___2=='1'~'2',
     covid1_epii26___0=='1'~'0',
@@ -315,6 +352,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii26___1, -covid1_epii26___2, -covid1_epii26___0,-covid1_epii26___9) %>%
   mutate(epii_init_27=case_when(
+    (covid1_epii27___1=='1' & covid1_epii27___2=='1')~ '3',
     covid1_epii27___1=='1'~'1',
     covid1_epii27___2=='1'~'2',
     covid1_epii27___0=='1'~'0',
@@ -323,6 +361,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii27___1, -covid1_epii27___2, -covid1_epii27___0,-covid1_epii27___9) %>%
   mutate(epii_init_28=case_when(
+    (covid1_epii28___1=='1' & covid1_epii28___2=='1')~ '3',
     covid1_epii28___1=='1'~'1',
     covid1_epii28___2=='1'~'2',
     covid1_epii28___0=='1'~'0',
@@ -331,6 +370,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii28___1, -covid1_epii28___2, -covid1_epii28___0,-covid1_epii28___9) %>%
   mutate(epii_init_29=case_when(
+    (covid1_epii29___1=='1' & covid1_epii29___2=='1')~ '3',
     covid1_epii29___1=='1'~'1',
     covid1_epii29___2=='1'~'2',
     covid1_epii29___0=='1'~'0',
@@ -338,7 +378,9 @@ epii <- epii %>%
     TRUE ~NA_character_
   )) %>%
   select(-covid1_epii29___1, -covid1_epii29___2, -covid1_epii29___0,-covid1_epii29___9) %>%
+  ####30s 
   mutate(epii_init_30=case_when(
+    (covid1_epii30___1=='1' & covid1_epii30___2=='1')~ '3',
     covid1_epii30___1=='1'~'1',
     covid1_epii30___2=='1'~'2',
     covid1_epii30___0=='1'~'0',
@@ -347,6 +389,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii30___1, -covid1_epii30___2, -covid1_epii30___0,-covid1_epii30___9) %>%
   mutate(epii_init_31=case_when(
+    (covid1_epii31___1=='1' & covid1_epii31___2=='1')~ '3',
     covid1_epii31___1=='1'~'1',
     covid1_epii31___2=='1'~'2',
     covid1_epii31___0=='1'~'0',
@@ -355,6 +398,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii31___1, -covid1_epii31___2, -covid1_epii31___0,-covid1_epii31___9) %>%
   mutate(epii_init_32=case_when(
+    (covid1_epii32___1=='1' & covid1_epii32___2=='1')~ '3',
     covid1_epii32___1=='1'~'1',
     covid1_epii32___2=='1'~'2',
     covid1_epii32___0=='1'~'0',
@@ -363,6 +407,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii32___1, -covid1_epii32___2, -covid1_epii32___0,-covid1_epii32___9) %>%
   mutate(epii_init_33=case_when(
+    (covid1_epii33___1=='1' & covid1_epii33___2=='1')~ '3',
     covid1_epii33___1=='1'~'1',
     covid1_epii33___2=='1'~'2',
     covid1_epii33___0=='1'~'0',
@@ -371,6 +416,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii33___1, -covid1_epii33___2, -covid1_epii33___0,-covid1_epii33___9) %>%
   mutate(epii_init_34=case_when(
+    (covid1_epii34___1=='1' & covid1_epii34___2=='1')~ '3',
     covid1_epii34___1=='1'~'1',
     covid1_epii34___2=='1'~'2',
     covid1_epii34___0=='1'~'0',
@@ -379,6 +425,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii34___1, -covid1_epii34___2, -covid1_epii34___0,-covid1_epii34___9) %>%
   mutate(epii_init_35=case_when(
+    (covid1_epii35___1=='1' & covid1_epii35___2=='1')~ '3',
     covid1_epii35___1=='1'~'1',
     covid1_epii35___2=='1'~'2',
     covid1_epii35___0=='1'~'0',
@@ -387,6 +434,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii35___1, -covid1_epii35___2, -covid1_epii35___0,-covid1_epii35___9) %>%
   mutate(epii_init_36=case_when(
+    (covid1_epii36___1=='1' & covid1_epii36___2=='1')~ '3',
     covid1_epii36___1=='1'~'1',
     covid1_epii36___2=='1'~'2',
     covid1_epii36___0=='1'~'0',
@@ -395,6 +443,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii36___1, -covid1_epii36___2, -covid1_epii36___0,-covid1_epii36___9) %>%
   mutate(epii_init_37=case_when(
+    (covid1_epii37___1=='1' & covid1_epii37___2=='1')~ '3',
     covid1_epii37___1=='1'~'1',
     covid1_epii37___2=='1'~'2',
     covid1_epii37___0=='1'~'0',
@@ -403,6 +452,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii37___1, -covid1_epii37___2, -covid1_epii37___0,-covid1_epii37___9) %>%
   mutate(epii_init_38=case_when(
+    (covid1_epii38___1=='1' & covid1_epii38___2=='1')~ '3',
     covid1_epii38___1=='1'~'1',
     covid1_epii38___2=='1'~'2',
     covid1_epii38___0=='1'~'0',
@@ -411,6 +461,7 @@ epii <- epii %>%
   )) %>%
   select(-covid1_epii38___1, -covid1_epii38___2, -covid1_epii38___0,-covid1_epii38___9) %>%
   mutate(epii_init_39=case_when(
+    (covid1_epii39___1=='1' & covid1_epii39___2=='1')~ '3',
     covid1_epii39___1=='1'~'1',
     covid1_epii39___2=='1'~'2',
     covid1_epii39___0=='1'~'0',
@@ -418,7 +469,9 @@ epii <- epii %>%
     TRUE ~NA_character_
   )) %>%
   select(-covid1_epii39___1, -covid1_epii39___2, -covid1_epii39___0,-covid1_epii39___9) %>%
+  #4000000s
   mutate(epii_init_40=case_when(
+    (covid1_epii40___1=='1' & covid1_epii40___2=='1')~ '3',
     covid1_epii40___1=='1'~'1',
     covid1_epii40___2=='1'~'2',
     covid1_epii40___0=='1'~'0',
@@ -427,6 +480,7 @@ epii <- epii %>%
   )) %>% 
   select(-covid1_epii40___1, -covid1_epii40___2, -covid1_epii40___0,-covid1_epii40___9) %>%
   mutate(epii_init_41=case_when(
+    (covid1_epii41___1=='1' & covid1_epii41___2=='1')~ '3',
     covid1_epii41___1=='1'~'1',
     covid1_epii41___2=='1'~'2',
     covid1_epii41___0=='1'~'0',
@@ -434,31 +488,17 @@ epii <- epii %>%
     TRUE ~NA_character_
   )) %>% 
   select(-covid1_epii41___1, -covid1_epii41___2, -covid1_epii41___0,-covid1_epii41___9) %>%
-  # mutate(epii_init_42=case_when(
-  #  covid1_epii42___1=='1'~'1',
-  # covid1_epii42___2=='1'~'2',
-  #covid1_epii42___0=='1'~'0',
-  #covid1_epii42___9=='1'~'9',
-  #TRUE ~NA_character_
-  #)) %>%
-  #select(-covid1_epii42___1, -covid1_epii42___2, -covid1_epii42___0,-covid1_epii42___9) %>%
-  #mutate(epii_init_43=case_when(
-  # covid1_epii43___1=='1'~'1',
-  #covid1_epii43___2=='1'~'2',
-#covid1_epii43___0=='1'~'0',
-#covid1_epii43___9=='1'~'9',
-#   TRUE ~NA_character_
-#  )) %>%
-# select(-covid1_epii43___1, -covid1_epii43___2, -covid1_epii43___0,-covid1_epii43___9) %>%
-mutate(epii_init_44=case_when(
-  covid1_epii44___1=='1'~'1',
-  covid1_epii44___2=='1'~'2',
-  covid1_epii44___0=='1'~'0',
-  covid1_epii44___9=='1'~'9',
-  TRUE ~NA_character_
-)) %>%
+  mutate(epii_init_44=case_when(
+    (covid1_epii44___1=='1' & covid1_epii44___2=='1')~ '3',
+    covid1_epii44___1=='1'~'1',
+    covid1_epii44___2=='1'~'2',
+    covid1_epii44___0=='1'~'0',
+    covid1_epii44___9=='1'~'9',
+    TRUE ~NA_character_
+  )) %>%
   select(-covid1_epii44___1, -covid1_epii44___2, -covid1_epii44___0,-covid1_epii44___9) %>%
   mutate(epii_init_45=case_when(
+    (covid1_epii45___1=='1' & covid1_epii45___2=='1')~ '3',
     covid1_epii45___1=='1'~'1',
     covid1_epii45___2=='1'~'2',
     covid1_epii45___0=='1'~'0',
@@ -467,6 +507,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii45___1, -covid1_epii45___2, -covid1_epii45___0,-covid1_epii45___9) %>%
   mutate(epii_init_46=case_when(
+    (covid1_epii46___1=='1' & covid1_epii46___2=='1')~ '3',
     covid1_epii46___1=='1'~'1',
     covid1_epii46___2=='1'~'2',
     covid1_epii46___0=='1'~'0',
@@ -475,6 +516,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii46___1, -covid1_epii46___2, -covid1_epii46___0,-covid1_epii46___9) %>%
   mutate(epii_init_47=case_when(
+    (covid1_epii47___1=='1' & covid1_epii47___2=='1')~ '3',
     covid1_epii47___1=='1'~'1',
     covid1_epii47___2=='1'~'2',
     covid1_epii47___0=='1'~'0',
@@ -483,6 +525,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii47___1, -covid1_epii47___2, -covid1_epii47___0,-covid1_epii47___9) %>%
   mutate(epii_init_48=case_when(
+    (covid1_epii48___1=='1' & covid1_epii48___2=='1')~ '3',
     covid1_epii48___1=='1'~'1',
     covid1_epii48___2=='1'~'2',
     covid1_epii48___0=='1'~'0',
@@ -491,14 +534,17 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii48___1, -covid1_epii48___2, -covid1_epii48___0,-covid1_epii48___9) %>%
   mutate(epii_init_49=case_when(
+    (covid1_epii49___1=='1' & covid1_epii49___2=='1')~ '3',
     covid1_epii49___1=='1'~'1',
     covid1_epii49___2=='1'~'2',
     covid1_epii49___0=='1'~'0',
     covid1_epii49___9=='1'~'9',
     TRUE ~NA_character_
   )) %>%
+  #50s
   select(-covid1_epii49___1, -covid1_epii49___2, -covid1_epii49___0,-covid1_epii49___9) %>%
   mutate(epii_init_50=case_when(
+    (covid1_epii50___1=='1' & covid1_epii50___2=='1')~ '3',
     covid1_epii50___1=='1'~'1',
     covid1_epii50___2=='1'~'2',
     covid1_epii50___0=='1'~'0',
@@ -507,6 +553,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii50___1, -covid1_epii50___2, -covid1_epii50___0,-covid1_epii50___9) %>%
   mutate(epii_init_51=case_when(
+    (covid1_epii51___1=='1' & covid1_epii51___2=='1')~ '3',
     covid1_epii51___1=='1'~'1',
     covid1_epii51___2=='1'~'2',
     covid1_epii51___0=='1'~'0',
@@ -515,6 +562,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii51___1, -covid1_epii51___2, -covid1_epii51___0,-covid1_epii51___9) %>%
   mutate(epii_init_52=case_when(
+    (covid1_epii52___1=='1' & covid1_epii52___2=='1')~ '3',
     covid1_epii52___1=='1'~'1',
     covid1_epii52___2=='1'~'2',
     covid1_epii52___0=='1'~'0',
@@ -523,6 +571,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii52___1, -covid1_epii52___2, -covid1_epii52___0,-covid1_epii52___9) %>%
   mutate(epii_init_53=case_when(
+    (covid1_epii53___1=='1' & covid1_epii53___2=='1')~ '3',
     covid1_epii53___1=='1'~'1',
     covid1_epii53___2=='1'~'2',
     covid1_epii53___0=='1'~'0',
@@ -531,6 +580,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii53___1, -covid1_epii53___2, -covid1_epii53___0,-covid1_epii53___9) %>%
   mutate(epii_init_54=case_when(
+    (covid1_epii54___1=='1' & covid1_epii54___2=='1')~ '3',
     covid1_epii54___1=='1'~'1',
     covid1_epii54___2=='1'~'2',
     covid1_epii54___0=='1'~'0',
@@ -539,6 +589,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii54___1, -covid1_epii54___2, -covid1_epii54___0,-covid1_epii54___9) %>%
   mutate(epii_init_55=case_when(
+    (covid1_epii55___1=='1' & covid1_epii55___2=='1')~ '3',
     covid1_epii55___1=='1'~'1',
     covid1_epii55___2=='1'~'2',
     covid1_epii55___0=='1'~'0',
@@ -547,6 +598,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii55___1, -covid1_epii55___2, -covid1_epii55___0,-covid1_epii55___9) %>%
   mutate(epii_init_56=case_when(
+    (covid1_epii56___1=='1' & covid1_epii56___2=='1')~ '3',
     covid1_epii56___1=='1'~'1',
     covid1_epii56___2=='1'~'2',
     covid1_epii56___0=='1'~'0',
@@ -555,6 +607,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii56___1, -covid1_epii56___2, -covid1_epii56___0,-covid1_epii56___9) %>%
   mutate(epii_init_57=case_when(
+    (covid1_epii57___1=='1' & covid1_epii57___2=='1')~ '3',
     covid1_epii57___1=='1'~'1',
     covid1_epii57___2=='1'~'2',
     covid1_epii57___0=='1'~'0',
@@ -563,6 +616,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii57___1, -covid1_epii57___2, -covid1_epii57___0,-covid1_epii57___9) %>%
   mutate(epii_init_58=case_when(
+    (covid1_epii58___1=='1' & covid1_epii58___2=='1')~ '3',
     covid1_epii58___1=='1'~'1',
     covid1_epii58___2=='1'~'2',
     covid1_epii58___0=='1'~'0',
@@ -571,6 +625,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii58___1, -covid1_epii58___2, -covid1_epii58___0,-covid1_epii58___9) %>%
   mutate(epii_init_59=case_when(
+    (covid1_epii59___1=='1' & covid1_epii59___2=='1')~ '3',
     covid1_epii59___1=='1'~'1',
     covid1_epii59___2=='1'~'2',
     covid1_epii59___0=='1'~'0',
@@ -578,7 +633,9 @@ mutate(epii_init_44=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid1_epii59___1, -covid1_epii59___2, -covid1_epii59___0,-covid1_epii59___9) %>%
+  #60s
   mutate(epii_init_60=case_when(
+    (covid1_epii60___1=='1' & covid1_epii60___2=='1')~ '3',
     covid1_epii60___1=='1'~'1',
     covid1_epii60___2=='1'~'2',
     covid1_epii60___0=='1'~'0',
@@ -587,6 +644,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii60___1, -covid1_epii60___2, -covid1_epii60___0,-covid1_epii60___9) %>%
   mutate(epii_init_61=case_when(
+    (covid1_epii61___1=='1' & covid1_epii61___2=='1')~ '3',
     covid1_epii61___1=='1'~'1',
     covid1_epii61___2=='1'~'2',
     covid1_epii61___0=='1'~'0',
@@ -595,6 +653,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii61___1, -covid1_epii61___2, -covid1_epii61___0,-covid1_epii61___9) %>%
   mutate(epii_init_62=case_when(
+    (covid1_epii62___1=='1' & covid1_epii62___2=='1')~ '3',
     covid1_epii62___1=='1'~'1',
     covid1_epii62___2=='1'~'2',
     covid1_epii62___0=='1'~'0',
@@ -603,6 +662,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii62___1, -covid1_epii62___2, -covid1_epii62___0,-covid1_epii62___9) %>%
   mutate(epii_init_63=case_when(
+    (covid1_epii63___1=='1' & covid1_epii63___2=='1')~ '3',
     covid1_epii63___1=='1'~'1',
     covid1_epii63___2=='1'~'2',
     covid1_epii63___0=='1'~'0',
@@ -611,6 +671,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii63___1, -covid1_epii63___2, -covid1_epii63___0,-covid1_epii63___9) %>%
   mutate(epii_init_64=case_when(
+    (covid1_epii64___1=='1' & covid1_epii64___2=='1')~ '3',
     covid1_epii64___1=='1'~'1',
     covid1_epii64___2=='1'~'2',
     covid1_epii64___0=='1'~'0',
@@ -619,6 +680,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii64___1, -covid1_epii64___2, -covid1_epii64___0,-covid1_epii64___9) %>%
   mutate(epii_init_65=case_when(
+    (covid1_epii65___1=='1' & covid1_epii65___2=='1')~ '3',
     covid1_epii65___1=='1'~'1',
     covid1_epii65___2=='1'~'2',
     covid1_epii65___0=='1'~'0',
@@ -627,6 +689,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii65___1, -covid1_epii65___2, -covid1_epii65___0,-covid1_epii65___9) %>%
   mutate(epii_init_66=case_when(
+    (covid1_epii66___1=='1' & covid1_epii66___2=='1')~ '3',
     covid1_epii66___1=='1'~'1',
     covid1_epii66___2=='1'~'2',
     covid1_epii66___0=='1'~'0',
@@ -635,6 +698,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii66___1, -covid1_epii66___2, -covid1_epii66___0,-covid1_epii66___9) %>%
   mutate(epii_init_67=case_when(
+    (covid1_epii67___1=='1' & covid1_epii67___2=='1')~ '3',
     covid1_epii67___1=='1'~'1',
     covid1_epii67___2=='1'~'2',
     covid1_epii67___0=='1'~'0',
@@ -643,6 +707,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii67___1, -covid1_epii67___2, -covid1_epii67___0,-covid1_epii67___9) %>%
   mutate(epii_init_68=case_when(
+    (covid1_epii68___1=='1' & covid1_epii68___2=='1')~ '3',
     covid1_epii68___1=='1'~'1',
     covid1_epii68___2=='1'~'2',
     covid1_epii68___0=='1'~'0',
@@ -651,6 +716,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii68___1, -covid1_epii68___2, -covid1_epii68___0,-covid1_epii68___9) %>%
   mutate(epii_init_69=case_when(
+    (covid1_epii69___1=='1' & covid1_epii69___2=='1')~ '3',
     covid1_epii69___1=='1'~'1',
     covid1_epii69___2=='1'~'2',
     covid1_epii69___0=='1'~'0',
@@ -658,7 +724,9 @@ mutate(epii_init_44=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid1_epii69___1, -covid1_epii69___2, -covid1_epii69___0,-covid1_epii69___9) %>%
+  #70s
   mutate(epii_init_70=case_when(
+    (covid1_epii70___1=='1' & covid1_epii70___2=='1')~ '3',
     covid1_epii70___1=='1'~'1',
     covid1_epii70___2=='1'~'2',
     covid1_epii70___0=='1'~'0',
@@ -667,6 +735,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii70___1, -covid1_epii70___2, -covid1_epii70___0,-covid1_epii70___9) %>%
   mutate(epii_init_71=case_when(
+    (covid1_epii71___1=='1' & covid1_epii71___2=='1')~ '3',
     covid1_epii71___1=='1'~'1',
     covid1_epii71___2=='1'~'2',
     covid1_epii71___0=='1'~'0',
@@ -675,6 +744,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii71___1, -covid1_epii71___2, -covid1_epii71___0,-covid1_epii71___9) %>%
   mutate(epii_init_72=case_when(
+    (covid1_epii72___1=='1' & covid1_epii72___2=='1')~ '3',
     covid1_epii72___1=='1'~'1',
     covid1_epii72___2=='1'~'2',
     covid1_epii72___0=='1'~'0',
@@ -683,6 +753,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii72___1, -covid1_epii72___2, -covid1_epii72___0,-covid1_epii72___9) %>%
   mutate(epii_init_73=case_when(
+    (covid1_epii73___1=='1' & covid1_epii73___2=='1')~ '3',
     covid1_epii73___1=='1'~'1',
     covid1_epii73___2=='1'~'2',
     covid1_epii73___0=='1'~'0',
@@ -691,6 +762,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii73___1, -covid1_epii73___2, -covid1_epii73___0,-covid1_epii73___9) %>%
   mutate(epii_init_74=case_when(
+    (covid1_epii74___1=='1' & covid1_epii74___2=='1')~ '3',
     covid1_epii74___1=='1'~'1',
     covid1_epii74___2=='1'~'2',
     covid1_epii74___0=='1'~'0',
@@ -699,6 +771,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii74___1, -covid1_epii74___2, -covid1_epii74___0,-covid1_epii74___9) %>%
   mutate(epii_init_75=case_when(
+    (covid1_epii75___1=='1' & covid1_epii75___2=='1')~ '3',
     covid1_epii75___1=='1'~'1',
     covid1_epii75___2=='1'~'2',
     covid1_epii75___0=='1'~'0',
@@ -707,6 +780,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii75___1, -covid1_epii75___2, -covid1_epii75___0,-covid1_epii75___9) %>%
   mutate(epii_init_76=case_when(
+    (covid1_epii76___1=='1' & covid1_epii76___2=='1')~ '3',
     covid1_epii76___1=='1'~'1',
     covid1_epii76___2=='1'~'2',
     covid1_epii76___0=='1'~'0',
@@ -715,6 +789,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii76___1, -covid1_epii76___2, -covid1_epii76___0,-covid1_epii76___9) %>%
   mutate(epii_init_77=case_when(
+    (covid1_epii77___1=='1' & covid1_epii77___2=='1')~ '3',
     covid1_epii77___1=='1'~'1',
     covid1_epii77___2=='1'~'2',
     covid1_epii77___0=='1'~'0',
@@ -723,6 +798,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii77___1, -covid1_epii77___2, -covid1_epii77___0,-covid1_epii77___9) %>%
   mutate(epii_init_78=case_when(
+    (covid1_epii78___1=='1' & covid1_epii78___2=='1')~ '3',
     covid1_epii78___1=='1'~'1',
     covid1_epii78___2=='1'~'2',
     covid1_epii78___0=='1'~'0',
@@ -731,6 +807,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii78___1, -covid1_epii78___2, -covid1_epii78___0,-covid1_epii78___9) %>%
   mutate(epii_init_79=case_when(
+    (covid1_epii79___1=='1' & covid1_epii79___2=='1')~ '3',
     covid1_epii79___1=='1'~'1',
     covid1_epii79___2=='1'~'2',
     covid1_epii79___0=='1'~'0',
@@ -738,7 +815,9 @@ mutate(epii_init_44=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid1_epii79___1, -covid1_epii79___2, -covid1_epii79___0,-covid1_epii79___9) %>%
+  #80s
   mutate(epii_init_80=case_when(
+    (covid1_epii80___1=='1' & covid1_epii80___2=='1')~ '3',
     covid1_epii80___1=='1'~'1',
     covid1_epii80___2=='1'~'2',
     covid1_epii80___0=='1'~'0',
@@ -747,6 +826,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii80___1, -covid1_epii80___2, -covid1_epii80___0,-covid1_epii80___9) %>%
   mutate(epii_init_81=case_when(
+    (covid1_epii81___1=='1' & covid1_epii81___2=='1')~ '3',
     covid1_epii81___1=='1'~'1',
     covid1_epii81___2=='1'~'2',
     covid1_epii81___0=='1'~'0',
@@ -755,6 +835,7 @@ mutate(epii_init_44=case_when(
   )) %>% 
   select(-covid1_epii81___1, -covid1_epii81___2, -covid1_epii81___0,-covid1_epii81___9) %>%
   mutate(epii_init_82=case_when(
+    (covid1_epii82___1=='1' & covid1_epii82___2=='1')~ '3',
     covid1_epii82___1=='1'~'1',
     covid1_epii82___2=='1'~'2',
     covid1_epii82___0=='1'~'0',
@@ -763,6 +844,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii82___1, -covid1_epii82___2, -covid1_epii82___0,-covid1_epii82___9) %>%
   mutate(epii_init_83=case_when(
+    (covid1_epii83___1=='1' & covid1_epii83___2=='1')~ '3',
     covid1_epii83___1=='1'~'1',
     covid1_epii83___2=='1'~'2',
     covid1_epii83___0=='1'~'0',
@@ -771,6 +853,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii83___1, -covid1_epii83___2, -covid1_epii83___0,-covid1_epii83___9) %>%
   mutate(epii_init_84=case_when(
+    (covid1_epii84___1=='1' & covid1_epii84___2=='1')~ '3',
     covid1_epii84___1=='1'~'1',
     covid1_epii84___2=='1'~'2',
     covid1_epii84___0=='1'~'0',
@@ -779,6 +862,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii84___1, -covid1_epii84___2, -covid1_epii84___0,-covid1_epii84___9) %>%
   mutate(epii_init_85=case_when(
+    (covid1_epii85___1=='1' & covid1_epii85___2=='1')~ '3',
     covid1_epii85___1=='1'~'1',
     covid1_epii85___2=='1'~'2',
     covid1_epii85___0=='1'~'0',
@@ -787,6 +871,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii85___1, -covid1_epii85___2, -covid1_epii85___0,-covid1_epii85___9) %>%
   mutate(epii_init_86=case_when(
+    (covid1_epii86___1=='1' & covid1_epii86___2=='1')~ '3',
     covid1_epii86___1=='1'~'1',
     covid1_epii86___2=='1'~'2',
     covid1_epii86___0=='1'~'0',
@@ -795,6 +880,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii86___1, -covid1_epii86___2, -covid1_epii86___0,-covid1_epii86___9) %>%
   mutate(epii_init_87=case_when(
+    (covid1_epii87___1=='1' & covid1_epii87___2=='1')~ '3',
     covid1_epii87___1=='1'~'1',
     covid1_epii87___2=='1'~'2',
     covid1_epii87___0=='1'~'0',
@@ -803,6 +889,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii87___1, -covid1_epii87___2, -covid1_epii87___0,-covid1_epii87___9) %>%
   mutate(epii_init_88=case_when(
+    (covid1_epii88___1=='1' & covid1_epii88___2=='1')~ '3',
     covid1_epii88___1=='1'~'1',
     covid1_epii88___2=='1'~'2',
     covid1_epii88___0=='1'~'0',
@@ -811,6 +898,7 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii88___1, -covid1_epii88___2, -covid1_epii88___0,-covid1_epii88___9) %>%
   mutate(epii_init_89=case_when(
+    (covid1_epii89___1=='1' & covid1_epii89___2=='1')~ '3',
     covid1_epii89___1=='1'~'1',
     covid1_epii89___2=='1'~'2',
     covid1_epii89___0=='1'~'0',
@@ -819,22 +907,25 @@ mutate(epii_init_44=case_when(
   )) %>%
   select(-covid1_epii89___1, -covid1_epii89___2, -covid1_epii89___0,-covid1_epii89___9) %>%
   mutate(epii_init_90=case_when(
+    (covid1_epii90___1=='1' & covid1_epii90___2=='1')~ '3',
     covid1_epii90___1=='1'~'1',
     covid1_epii90___2=='1'~'2',
     covid1_epii90___0=='1'~'0',
     covid1_epii90___9=='1'~'9',
     TRUE ~NA_character_
-  )) %>% 
+  )) %>%
   select(-covid1_epii90___1, -covid1_epii90___2, -covid1_epii90___0,-covid1_epii90___9) %>%
   mutate(epii_init_91=case_when(
+    (covid1_epii91___1=='1' & covid1_epii91___2=='1')~ '3',
     covid1_epii91___1=='1'~'1',
     covid1_epii91___2=='1'~'2',
     covid1_epii91___0=='1'~'0',
     covid1_epii91___9=='1'~'9',
     TRUE ~NA_character_
-  )) %>% 
+  )) %>%
   select(-covid1_epii91___1, -covid1_epii91___2, -covid1_epii91___0,-covid1_epii91___9) %>%
   mutate(epii_init_92=case_when(
+    (covid1_epii92___1=='1' & covid1_epii92___2=='1')~ '3',
     covid1_epii92___1=='1'~'1',
     covid1_epii92___2=='1'~'2',
     covid1_epii92___0=='1'~'0',
@@ -849,6 +940,16 @@ mutate(epii_init_44=case_when(
          epii_init_infection=covid1_epii_infection,epii_init_positive=covid1_epii_positive,epii_init_overall=covid1_epii_overall,
          epii_init_stressors=covid1_epii_stressors,epii_init_other=covid1_epii_other) %>%
   relocate(epii_init_42,.after=epii_init_41)%>%relocate(epii_init_43,.after=epii_init_42)
+
+#for loop test
+#list <- read.csv(file="/Users/rachelkwon/Desktop/list_id.csv")
+#list <- list(list)
+#df <-epii
+#for (i in 1:92) {
+  x <- paste0('epii_init_', i)
+ # y <- paste0('highrev', i)
+#  df[, x] <- (df[, x] > 500) + 0L
+#}
 
 ####------monthly EPII data --------
 epiimonth_erp <- c("subj","covid_mo_date", "ques_respondent_covid_mo","covid_mo_epii_1","covid_mo_epii_2","covid_mo_epii_3","covid_mo_epii_4","covid_mo_epii_5",
@@ -900,11 +1001,9 @@ epii_monthly <- left_join(fullsubjlist,epii_monthly)
 epii_months <- epii_monthly[!is.na(epii_monthly$covid_mo_date), ]
 
 
-### clean matrices for monthly epii --------------
-
-#for now hard coding this but see if can be placed in a for loop or make shorter code
-epii_months <- epii_months %>% 
+epii_mo <- epii_months %>% 
   mutate(epii1=case_when(
+    (covid_mo_epii_1___1=='1' & covid_mo_epii_1___2=='1')~ '3',
     covid_mo_epii_1___1=='1'~'1',
     covid_mo_epii_1___2=='1'~'2',
     covid_mo_epii_1___0=='1'~'0',
@@ -913,6 +1012,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_1___1, -covid_mo_epii_1___2, -covid_mo_epii_1___0,-covid_mo_epii_1___9) %>%
   mutate(epii2=case_when(
+    (covid_mo_epii_2___1=='1' & covid_mo_epii_2___2=='1')~ '3',
     covid_mo_epii_2___1=='1'~'1',
     covid_mo_epii_2___2=='1'~'2',
     covid_mo_epii_2___0=='1'~'0',
@@ -921,6 +1021,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_2___1, -covid_mo_epii_2___2, -covid_mo_epii_2___0,-covid_mo_epii_2___9) %>%
   mutate(epii3=case_when(
+    (covid_mo_epii_3___1=='1' & covid_mo_epii_3___2=='1')~ '3',
     covid_mo_epii_3___1=='1'~'1',
     covid_mo_epii_3___2=='1'~'2',
     covid_mo_epii_3___0=='1'~'0',
@@ -929,6 +1030,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_3___1, -covid_mo_epii_3___2, -covid_mo_epii_3___0,-covid_mo_epii_3___9) %>%
   mutate(epii4=case_when(
+    (covid_mo_epii_4___1=='1' & covid_mo_epii_4___2=='1')~ '3',
     covid_mo_epii_4___1=='1'~'1',
     covid_mo_epii_4___2=='1'~'2',
     covid_mo_epii_4___0=='1'~'0',
@@ -937,6 +1039,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_4___1, -covid_mo_epii_4___2, -covid_mo_epii_4___0,-covid_mo_epii_4___9) %>%
   mutate(epii5=case_when(
+    (covid_mo_epii_5___1=='1' & covid_mo_epii_5___2=='1')~ '3',
     covid_mo_epii_5___1=='1'~'1',
     covid_mo_epii_5___2=='1'~'2',
     covid_mo_epii_5___0=='1'~'0',
@@ -945,6 +1048,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_5___1, -covid_mo_epii_5___2, -covid_mo_epii_5___0,-covid_mo_epii_5___9) %>%
   mutate(epii6=case_when(
+    (covid_mo_epii_6___1=='1' & covid_mo_epii_6___2=='1')~ '3',
     covid_mo_epii_6___1=='1'~'1',
     covid_mo_epii_6___2=='1'~'2',
     covid_mo_epii_6___0=='1'~'0',
@@ -953,6 +1057,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_6___1, -covid_mo_epii_6___2, -covid_mo_epii_6___0,-covid_mo_epii_6___9) %>%
   mutate(epii7=case_when(
+    (covid_mo_epii_7___1=='1' & covid_mo_epii_7___2=='1')~ '3',
     covid_mo_epii_7___1=='1'~'1',
     covid_mo_epii_7___2=='1'~'2',
     covid_mo_epii_7___0=='1'~'0',
@@ -961,6 +1066,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_7___1, -covid_mo_epii_7___2, -covid_mo_epii_7___0,-covid_mo_epii_7___9) %>%
   mutate(epii8=case_when(
+    (covid_mo_epii_8___1=='1' & covid_mo_epii_8___2=='1')~ '3',
     covid_mo_epii_8___1=='1'~'1',
     covid_mo_epii_8___2=='1'~'2',
     covid_mo_epii_8___0=='1'~'0',
@@ -969,6 +1075,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_8___1, -covid_mo_epii_8___2, -covid_mo_epii_8___0,-covid_mo_epii_8___9) %>%
   mutate(epii9=case_when(
+    (covid_mo_epii_9___1=='1' & covid_mo_epii_9___2=='1')~ '3',
     covid_mo_epii_9___1=='1'~'1',
     covid_mo_epii_9___2=='1'~'2',
     covid_mo_epii_9___0=='1'~'0',
@@ -977,6 +1084,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_9___1, -covid_mo_epii_9___2, -covid_mo_epii_9___0,-covid_mo_epii_9___9) %>%
   mutate(epii10=case_when(
+    (covid_mo_epii_10___1=='1' & covid_mo_epii_10___2=='1')~ '3',
     covid_mo_epii_10___1=='1'~'1',
     covid_mo_epii_10___2=='1'~'2',
     covid_mo_epii_10___0=='1'~'0',
@@ -985,6 +1093,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_10___1, -covid_mo_epii_10___2, -covid_mo_epii_10___0,-covid_mo_epii_10___9) %>%
   mutate(epii11=case_when(
+    (covid_mo_epii_11___1=='1' & covid_mo_epii_11___2=='1')~ '3',
     covid_mo_epii_11___1=='1'~'1',
     covid_mo_epii_11___2=='1'~'2',
     covid_mo_epii_11___0=='1'~'0',
@@ -993,6 +1102,7 @@ epii_months <- epii_months %>%
   )) %>% 
   select(-covid_mo_epii_11___1, -covid_mo_epii_11___2, -covid_mo_epii_11___0,-covid_mo_epii_11___9) %>%
   mutate(epii12=case_when(
+    (covid_mo_epii_12___1=='1' & covid_mo_epii_12___2=='1')~ '3',
     covid_mo_epii_12___1=='1'~'1',
     covid_mo_epii_12___2=='1'~'2',
     covid_mo_epii_12___0=='1'~'0',
@@ -1001,6 +1111,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii_12___1, -covid_mo_epii_12___2, -covid_mo_epii_12___0,-covid_mo_epii_12___9) %>%
   mutate(epii13=case_when(
+    (covid_mo_epii_13___1=='1' & covid_mo_epii_13___2=='1')~ '3',
     covid_mo_epii_13___1=='1'~'1',
     covid_mo_epii_13___2=='1'~'2',
     covid_mo_epii_13___0=='1'~'0',
@@ -1009,6 +1120,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii_13___1, -covid_mo_epii_13___2, -covid_mo_epii_13___0,-covid_mo_epii_13___9) %>%
   mutate(epii14=case_when(
+    (covid_mo_epii14___1=='1' & covid_mo_epii14___2=='1')~ '3',
     covid_mo_epii14___1=='1'~'1',
     covid_mo_epii14___2=='1'~'2',
     covid_mo_epii14___0=='1'~'0',
@@ -1017,6 +1129,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii14___1, -covid_mo_epii14___2, -covid_mo_epii14___0,-covid_mo_epii14___9) %>%
   mutate(epii15=case_when(
+    (covid_mo_epii15___1=='1' & covid_mo_epii15___2=='1')~ '3',
     covid_mo_epii15___1=='1'~'1',
     covid_mo_epii15___2=='1'~'2',
     covid_mo_epii15___0=='1'~'0',
@@ -1025,6 +1138,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii15___1, -covid_mo_epii15___2, -covid_mo_epii15___0,-covid_mo_epii15___9) %>%
   mutate(epii16=case_when(
+    (covid_mo_epii16___1=='1' & covid_mo_epii16___2=='1')~ '3',
     covid_mo_epii16___1=='1'~'1',
     covid_mo_epii16___2=='1'~'2',
     covid_mo_epii16___0=='1'~'0',
@@ -1033,6 +1147,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii16___1, -covid_mo_epii16___2, -covid_mo_epii16___0,-covid_mo_epii16___9) %>%
   mutate(epii17=case_when(
+    (covid_mo_epii17___1=='1' & covid_mo_epii17___2=='1')~ '3',
     covid_mo_epii17___1=='1'~'1',
     covid_mo_epii17___2=='1'~'2',
     covid_mo_epii17___0=='1'~'0',
@@ -1041,6 +1156,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii17___1, -covid_mo_epii17___2, -covid_mo_epii17___0,-covid_mo_epii17___9) %>%
   mutate(epii18=case_when(
+    (covid_mo_epii18___1=='1' & covid_mo_epii18___2=='1')~ '3',
     covid_mo_epii18___1=='1'~'1',
     covid_mo_epii18___2=='1'~'2',
     covid_mo_epii18___0=='1'~'0',
@@ -1049,6 +1165,7 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii18___1, -covid_mo_epii18___2, -covid_mo_epii18___0,-covid_mo_epii18___9) %>%
   mutate(epii19=case_when(
+    (covid_mo_epii19___1=='1' & covid_mo_epii19___2=='1')~ '3',
     covid_mo_epii19___1=='1'~'1',
     covid_mo_epii19___2=='1'~'2',
     covid_mo_epii19___0=='1'~'0',
@@ -1057,22 +1174,25 @@ epii_months <- epii_months %>%
   )) %>%
   select(-covid_mo_epii19___1, -covid_mo_epii19___2, -covid_mo_epii19___0,-covid_mo_epii19___9) %>%
   mutate(epii20=case_when(
+    (covid_mo_epii20___1=='1' & covid_mo_epii20___2=='1')~ '3',
     covid_mo_epii20___1=='1'~'1',
     covid_mo_epii20___2=='1'~'2',
     covid_mo_epii20___0=='1'~'0',
     covid_mo_epii20___9=='1'~'9',
     TRUE ~NA_character_
   )) %>% 
-select(-covid_mo_epii20___1, -covid_mo_epii20___2, -covid_mo_epii20___0,-covid_mo_epii20___9) %>%
-mutate(epii21=case_when(
-  covid_mo_epii21___1=='1'~'1',
-  covid_mo_epii21___2=='1'~'2',
-  covid_mo_epii21___0=='1'~'0',
-  covid_mo_epii21___9=='1'~'9',
-  TRUE ~NA_character_
+  select(-covid_mo_epii20___1, -covid_mo_epii20___2, -covid_mo_epii20___0,-covid_mo_epii20___9) %>%
+  mutate(epii21=case_when(
+    (covid_mo_epii21___1=='1' & covid_mo_epii21___2=='1')~ '3',
+    covid_mo_epii21___1=='1'~'1',
+    covid_mo_epii21___2=='1'~'2',
+    covid_mo_epii21___0=='1'~'0',
+    covid_mo_epii21___9=='1'~'9',
+    TRUE ~NA_character_
   )) %>% 
   select(-covid_mo_epii21___1, -covid_mo_epii21___2, -covid_mo_epii21___0,-covid_mo_epii21___9) %>%
   mutate(epii22=case_when(
+    (covid_mo_epii22___1=='1' & covid_mo_epii22___2=='1')~ '3',
     covid_mo_epii22___1=='1'~'1',
     covid_mo_epii22___2=='1'~'2',
     covid_mo_epii22___0=='1'~'0',
@@ -1081,6 +1201,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii22___1, -covid_mo_epii22___2, -covid_mo_epii22___0,-covid_mo_epii22___9) %>%
   mutate(epii23=case_when(
+    (covid_mo_epii23___1=='1' & covid_mo_epii23___2=='1')~ '3',
     covid_mo_epii23___1=='1'~'1',
     covid_mo_epii23___2=='1'~'2',
     covid_mo_epii23___0=='1'~'0',
@@ -1089,6 +1210,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii23___1, -covid_mo_epii23___2, -covid_mo_epii23___0,-covid_mo_epii23___9) %>%
   mutate(epii24=case_when(
+    (covid_mo_epii24___1=='1' & covid_mo_epii24___2=='1')~ '3',
     covid_mo_epii24___1=='1'~'1',
     covid_mo_epii24___2=='1'~'2',
     covid_mo_epii24___0=='1'~'0',
@@ -1097,6 +1219,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii24___1, -covid_mo_epii24___2, -covid_mo_epii24___0,-covid_mo_epii24___9) %>%
   mutate(epii25=case_when(
+    (covid_mo_epii25___1=='1' & covid_mo_epii25___2=='1')~ '3',
     covid_mo_epii25___1=='1'~'1',
     covid_mo_epii25___2=='1'~'2',
     covid_mo_epii25___0=='1'~'0',
@@ -1105,6 +1228,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii25___1, -covid_mo_epii25___2, -covid_mo_epii25___0,-covid_mo_epii25___9) %>%
   mutate(epii26=case_when(
+    (covid_mo_epii26___1=='1' & covid_mo_epii26___2=='1')~ '3',
     covid_mo_epii26___1=='1'~'1',
     covid_mo_epii26___2=='1'~'2',
     covid_mo_epii26___0=='1'~'0',
@@ -1113,6 +1237,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii26___1, -covid_mo_epii26___2, -covid_mo_epii26___0,-covid_mo_epii26___9) %>%
   mutate(epii27=case_when(
+    (covid_mo_epii27___1=='1' & covid_mo_epii27___2=='1')~ '3',
     covid_mo_epii27___1=='1'~'1',
     covid_mo_epii27___2=='1'~'2',
     covid_mo_epii27___0=='1'~'0',
@@ -1121,6 +1246,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii27___1, -covid_mo_epii27___2, -covid_mo_epii27___0,-covid_mo_epii27___9) %>%
   mutate(epii28=case_when(
+    (covid_mo_epii28___1=='1' & covid_mo_epii28___2=='1')~ '3',
     covid_mo_epii28___1=='1'~'1',
     covid_mo_epii28___2=='1'~'2',
     covid_mo_epii28___0=='1'~'0',
@@ -1129,6 +1255,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii28___1, -covid_mo_epii28___2, -covid_mo_epii28___0,-covid_mo_epii28___9) %>%
   mutate(epii29=case_when(
+    (covid_mo_epii29___1=='1' & covid_mo_epii29___2=='1')~ '3',
     covid_mo_epii29___1=='1'~'1',
     covid_mo_epii29___2=='1'~'2',
     covid_mo_epii29___0=='1'~'0',
@@ -1136,7 +1263,9 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii29___1, -covid_mo_epii29___2, -covid_mo_epii29___0,-covid_mo_epii29___9) %>%
+  ####30s 
   mutate(epii30=case_when(
+    (covid_mo_epii30___1=='1' & covid_mo_epii30___2=='1')~ '3',
     covid_mo_epii30___1=='1'~'1',
     covid_mo_epii30___2=='1'~'2',
     covid_mo_epii30___0=='1'~'0',
@@ -1145,6 +1274,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii30___1, -covid_mo_epii30___2, -covid_mo_epii30___0,-covid_mo_epii30___9) %>%
   mutate(epii31=case_when(
+    (covid_mo_epii31___1=='1' & covid_mo_epii31___2=='1')~ '3',
     covid_mo_epii31___1=='1'~'1',
     covid_mo_epii31___2=='1'~'2',
     covid_mo_epii31___0=='1'~'0',
@@ -1153,6 +1283,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii31___1, -covid_mo_epii31___2, -covid_mo_epii31___0,-covid_mo_epii31___9) %>%
   mutate(epii32=case_when(
+    (covid_mo_epii32___1=='1' & covid_mo_epii32___2=='1')~ '3',
     covid_mo_epii32___1=='1'~'1',
     covid_mo_epii32___2=='1'~'2',
     covid_mo_epii32___0=='1'~'0',
@@ -1161,6 +1292,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii32___1, -covid_mo_epii32___2, -covid_mo_epii32___0,-covid_mo_epii32___9) %>%
   mutate(epii33=case_when(
+    (covid_mo_epii33___1=='1' & covid_mo_epii33___2=='1')~ '3',
     covid_mo_epii33___1=='1'~'1',
     covid_mo_epii33___2=='1'~'2',
     covid_mo_epii33___0=='1'~'0',
@@ -1169,6 +1301,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii33___1, -covid_mo_epii33___2, -covid_mo_epii33___0,-covid_mo_epii33___9) %>%
   mutate(epii34=case_when(
+    (covid_mo_epii34___1=='1' & covid_mo_epii34___2=='1')~ '3',
     covid_mo_epii34___1=='1'~'1',
     covid_mo_epii34___2=='1'~'2',
     covid_mo_epii34___0=='1'~'0',
@@ -1177,6 +1310,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii34___1, -covid_mo_epii34___2, -covid_mo_epii34___0,-covid_mo_epii34___9) %>%
   mutate(epii35=case_when(
+    (covid_mo_epii35___1=='1' & covid_mo_epii35___2=='1')~ '3',
     covid_mo_epii35___1=='1'~'1',
     covid_mo_epii35___2=='1'~'2',
     covid_mo_epii35___0=='1'~'0',
@@ -1185,6 +1319,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii35___1, -covid_mo_epii35___2, -covid_mo_epii35___0,-covid_mo_epii35___9) %>%
   mutate(epii36=case_when(
+    (covid_mo_epii36___1=='1' & covid_mo_epii36___2=='1')~ '3',
     covid_mo_epii36___1=='1'~'1',
     covid_mo_epii36___2=='1'~'2',
     covid_mo_epii36___0=='1'~'0',
@@ -1193,6 +1328,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii36___1, -covid_mo_epii36___2, -covid_mo_epii36___0,-covid_mo_epii36___9) %>%
   mutate(epii37=case_when(
+    (covid_mo_epii37___1=='1' & covid_mo_epii37___2=='1')~ '3',
     covid_mo_epii37___1=='1'~'1',
     covid_mo_epii37___2=='1'~'2',
     covid_mo_epii37___0=='1'~'0',
@@ -1201,6 +1337,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii37___1, -covid_mo_epii37___2, -covid_mo_epii37___0,-covid_mo_epii37___9) %>%
   mutate(epii38=case_when(
+    (covid_mo_epii38___1=='1' & covid_mo_epii38___2=='1')~ '3',
     covid_mo_epii38___1=='1'~'1',
     covid_mo_epii38___2=='1'~'2',
     covid_mo_epii38___0=='1'~'0',
@@ -1209,6 +1346,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii38___1, -covid_mo_epii38___2, -covid_mo_epii38___0,-covid_mo_epii38___9) %>%
   mutate(epii39=case_when(
+    (covid_mo_epii39___1=='1' & covid_mo_epii39___2=='1')~ '3',
     covid_mo_epii39___1=='1'~'1',
     covid_mo_epii39___2=='1'~'2',
     covid_mo_epii39___0=='1'~'0',
@@ -1216,7 +1354,9 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii39___1, -covid_mo_epii39___2, -covid_mo_epii39___0,-covid_mo_epii39___9) %>%
+  #4000000s
   mutate(epii40=case_when(
+    (covid_mo_epii40___1=='1' & covid_mo_epii40___2=='1')~ '3',
     covid_mo_epii40___1=='1'~'1',
     covid_mo_epii40___2=='1'~'2',
     covid_mo_epii40___0=='1'~'0',
@@ -1225,6 +1365,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii40___1, -covid_mo_epii40___2, -covid_mo_epii40___0,-covid_mo_epii40___9) %>%
   mutate(epii41=case_when(
+    (covid_mo_epii41___1=='1' & covid_mo_epii41___2=='1')~ '3',
     covid_mo_epii41___1=='1'~'1',
     covid_mo_epii41___2=='1'~'2',
     covid_mo_epii41___0=='1'~'0',
@@ -1232,23 +1373,8 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>% 
   select(-covid_mo_epii41___1, -covid_mo_epii41___2, -covid_mo_epii41___0,-covid_mo_epii41___9) %>%
- # mutate(epii42=case_when(
-  #  covid_mo_epii42___1=='1'~'1',
-   # covid_mo_epii42___2=='1'~'2',
-    #covid_mo_epii42___0=='1'~'0',
-    #covid_mo_epii42___9=='1'~'9',
-    #TRUE ~NA_character_
-  #)) %>%
-  #select(-covid_mo_epii42___1, -covid_mo_epii42___2, -covid_mo_epii42___0,-covid_mo_epii42___9) %>%
-  #mutate(epii43=case_when(
-   # covid_mo_epii43___1=='1'~'1',
-    #covid_mo_epii43___2=='1'~'2',
-    #covid_mo_epii43___0=='1'~'0',
-    #covid_mo_epii43___9=='1'~'9',
- #   TRUE ~NA_character_
-#  )) %>%
- # select(-covid_mo_epii43___1, -covid_mo_epii43___2, -covid_mo_epii43___0,-covid_mo_epii43___9) %>%
   mutate(epii44=case_when(
+    (covid_mo_epii44___1=='1' & covid_mo_epii44___2=='1')~ '3',
     covid_mo_epii44___1=='1'~'1',
     covid_mo_epii44___2=='1'~'2',
     covid_mo_epii44___0=='1'~'0',
@@ -1257,6 +1383,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii44___1, -covid_mo_epii44___2, -covid_mo_epii44___0,-covid_mo_epii44___9) %>%
   mutate(epii45=case_when(
+    (covid_mo_epii45___1=='1' & covid_mo_epii45___2=='1')~ '3',
     covid_mo_epii45___1=='1'~'1',
     covid_mo_epii45___2=='1'~'2',
     covid_mo_epii45___0=='1'~'0',
@@ -1265,6 +1392,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii45___1, -covid_mo_epii45___2, -covid_mo_epii45___0,-covid_mo_epii45___9) %>%
   mutate(epii46=case_when(
+    (covid_mo_epii46___1=='1' & covid_mo_epii46___2=='1')~ '3',
     covid_mo_epii46___1=='1'~'1',
     covid_mo_epii46___2=='1'~'2',
     covid_mo_epii46___0=='1'~'0',
@@ -1273,6 +1401,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii46___1, -covid_mo_epii46___2, -covid_mo_epii46___0,-covid_mo_epii46___9) %>%
   mutate(epii47=case_when(
+    (covid_mo_epii47___1=='1' & covid_mo_epii47___2=='1')~ '3',
     covid_mo_epii47___1=='1'~'1',
     covid_mo_epii47___2=='1'~'2',
     covid_mo_epii47___0=='1'~'0',
@@ -1281,6 +1410,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii47___1, -covid_mo_epii47___2, -covid_mo_epii47___0,-covid_mo_epii47___9) %>%
   mutate(epii48=case_when(
+    (covid_mo_epii48___1=='1' & covid_mo_epii48___2=='1')~ '3',
     covid_mo_epii48___1=='1'~'1',
     covid_mo_epii48___2=='1'~'2',
     covid_mo_epii48___0=='1'~'0',
@@ -1289,14 +1419,17 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii48___1, -covid_mo_epii48___2, -covid_mo_epii48___0,-covid_mo_epii48___9) %>%
   mutate(epii49=case_when(
+    (covid_mo_epii49___1=='1' & covid_mo_epii49___2=='1')~ '3',
     covid_mo_epii49___1=='1'~'1',
     covid_mo_epii49___2=='1'~'2',
     covid_mo_epii49___0=='1'~'0',
     covid_mo_epii49___9=='1'~'9',
     TRUE ~NA_character_
   )) %>%
+  #50s
   select(-covid_mo_epii49___1, -covid_mo_epii49___2, -covid_mo_epii49___0,-covid_mo_epii49___9) %>%
   mutate(epii50=case_when(
+    (covid_mo_epii50___1=='1' & covid_mo_epii50___2=='1')~ '3',
     covid_mo_epii50___1=='1'~'1',
     covid_mo_epii50___2=='1'~'2',
     covid_mo_epii50___0=='1'~'0',
@@ -1305,6 +1438,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii50___1, -covid_mo_epii50___2, -covid_mo_epii50___0,-covid_mo_epii50___9) %>%
   mutate(epii51=case_when(
+    (covid_mo_epii51___1=='1' & covid_mo_epii51___2=='1')~ '3',
     covid_mo_epii51___1=='1'~'1',
     covid_mo_epii51___2=='1'~'2',
     covid_mo_epii51___0=='1'~'0',
@@ -1313,6 +1447,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii51___1, -covid_mo_epii51___2, -covid_mo_epii51___0,-covid_mo_epii51___9) %>%
   mutate(epii52=case_when(
+    (covid_mo_epii52___1=='1' & covid_mo_epii52___2=='1')~ '3',
     covid_mo_epii52___1=='1'~'1',
     covid_mo_epii52___2=='1'~'2',
     covid_mo_epii52___0=='1'~'0',
@@ -1321,6 +1456,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii52___1, -covid_mo_epii52___2, -covid_mo_epii52___0,-covid_mo_epii52___9) %>%
   mutate(epii53=case_when(
+    (covid_mo_epii53___1=='1' & covid_mo_epii53___2=='1')~ '3',
     covid_mo_epii53___1=='1'~'1',
     covid_mo_epii53___2=='1'~'2',
     covid_mo_epii53___0=='1'~'0',
@@ -1329,6 +1465,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii53___1, -covid_mo_epii53___2, -covid_mo_epii53___0,-covid_mo_epii53___9) %>%
   mutate(epii54=case_when(
+    (covid_mo_epii54___1=='1' & covid_mo_epii54___2=='1')~ '3',
     covid_mo_epii54___1=='1'~'1',
     covid_mo_epii54___2=='1'~'2',
     covid_mo_epii54___0=='1'~'0',
@@ -1337,6 +1474,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii54___1, -covid_mo_epii54___2, -covid_mo_epii54___0,-covid_mo_epii54___9) %>%
   mutate(epii55=case_when(
+    (covid_mo_epii55___1=='1' & covid_mo_epii55___2=='1')~ '3',
     covid_mo_epii55___1=='1'~'1',
     covid_mo_epii55___2=='1'~'2',
     covid_mo_epii55___0=='1'~'0',
@@ -1345,6 +1483,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii55___1, -covid_mo_epii55___2, -covid_mo_epii55___0,-covid_mo_epii55___9) %>%
   mutate(epii56=case_when(
+    (covid_mo_epii56___1=='1' & covid_mo_epii56___2=='1')~ '3',
     covid_mo_epii56___1=='1'~'1',
     covid_mo_epii56___2=='1'~'2',
     covid_mo_epii56___0=='1'~'0',
@@ -1353,6 +1492,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii56___1, -covid_mo_epii56___2, -covid_mo_epii56___0,-covid_mo_epii56___9) %>%
   mutate(epii57=case_when(
+    (covid_mo_epii57___1=='1' & covid_mo_epii57___2=='1')~ '3',
     covid_mo_epii57___1=='1'~'1',
     covid_mo_epii57___2=='1'~'2',
     covid_mo_epii57___0=='1'~'0',
@@ -1361,6 +1501,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii57___1, -covid_mo_epii57___2, -covid_mo_epii57___0,-covid_mo_epii57___9) %>%
   mutate(epii58=case_when(
+    (covid_mo_epii58___1=='1' & covid_mo_epii58___2=='1')~ '3',
     covid_mo_epii58___1=='1'~'1',
     covid_mo_epii58___2=='1'~'2',
     covid_mo_epii58___0=='1'~'0',
@@ -1369,6 +1510,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii58___1, -covid_mo_epii58___2, -covid_mo_epii58___0,-covid_mo_epii58___9) %>%
   mutate(epii59=case_when(
+    (covid_mo_epii59___1=='1' & covid_mo_epii59___2=='1')~ '3',
     covid_mo_epii59___1=='1'~'1',
     covid_mo_epii59___2=='1'~'2',
     covid_mo_epii59___0=='1'~'0',
@@ -1376,7 +1518,9 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii59___1, -covid_mo_epii59___2, -covid_mo_epii59___0,-covid_mo_epii59___9) %>%
+  #60s
   mutate(epii60=case_when(
+    (covid_mo_epii60___1=='1' & covid_mo_epii60___2=='1')~ '3',
     covid_mo_epii60___1=='1'~'1',
     covid_mo_epii60___2=='1'~'2',
     covid_mo_epii60___0=='1'~'0',
@@ -1385,6 +1529,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii60___1, -covid_mo_epii60___2, -covid_mo_epii60___0,-covid_mo_epii60___9) %>%
   mutate(epii61=case_when(
+    (covid_mo_epii61___1=='1' & covid_mo_epii61___2=='1')~ '3',
     covid_mo_epii61___1=='1'~'1',
     covid_mo_epii61___2=='1'~'2',
     covid_mo_epii61___0=='1'~'0',
@@ -1393,6 +1538,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii61___1, -covid_mo_epii61___2, -covid_mo_epii61___0,-covid_mo_epii61___9) %>%
   mutate(epii62=case_when(
+    (covid_mo_epii62___1=='1' & covid_mo_epii62___2=='1')~ '3',
     covid_mo_epii62___1=='1'~'1',
     covid_mo_epii62___2=='1'~'2',
     covid_mo_epii62___0=='1'~'0',
@@ -1401,6 +1547,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii62___1, -covid_mo_epii62___2, -covid_mo_epii62___0,-covid_mo_epii62___9) %>%
   mutate(epii63=case_when(
+    (covid_mo_epii63___1=='1' & covid_mo_epii63___2=='1')~ '3',
     covid_mo_epii63___1=='1'~'1',
     covid_mo_epii63___2=='1'~'2',
     covid_mo_epii63___0=='1'~'0',
@@ -1409,6 +1556,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii63___1, -covid_mo_epii63___2, -covid_mo_epii63___0,-covid_mo_epii63___9) %>%
   mutate(epii64=case_when(
+    (covid_mo_epii64___1=='1' & covid_mo_epii64___2=='1')~ '3',
     covid_mo_epii64___1=='1'~'1',
     covid_mo_epii64___2=='1'~'2',
     covid_mo_epii64___0=='1'~'0',
@@ -1417,6 +1565,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii64___1, -covid_mo_epii64___2, -covid_mo_epii64___0,-covid_mo_epii64___9) %>%
   mutate(epii65=case_when(
+    (covid_mo_epii65___1=='1' & covid_mo_epii65___2=='1')~ '3',
     covid_mo_epii65___1=='1'~'1',
     covid_mo_epii65___2=='1'~'2',
     covid_mo_epii65___0=='1'~'0',
@@ -1425,6 +1574,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii65___1, -covid_mo_epii65___2, -covid_mo_epii65___0,-covid_mo_epii65___9) %>%
   mutate(epii66=case_when(
+    (covid_mo_epii66___1=='1' & covid_mo_epii66___2=='1')~ '3',
     covid_mo_epii66___1=='1'~'1',
     covid_mo_epii66___2=='1'~'2',
     covid_mo_epii66___0=='1'~'0',
@@ -1433,6 +1583,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii66___1, -covid_mo_epii66___2, -covid_mo_epii66___0,-covid_mo_epii66___9) %>%
   mutate(epii67=case_when(
+    (covid_mo_epii67___1=='1' & covid_mo_epii67___2=='1')~ '3',
     covid_mo_epii67___1=='1'~'1',
     covid_mo_epii67___2=='1'~'2',
     covid_mo_epii67___0=='1'~'0',
@@ -1441,6 +1592,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii67___1, -covid_mo_epii67___2, -covid_mo_epii67___0,-covid_mo_epii67___9) %>%
   mutate(epii68=case_when(
+    (covid_mo_epii68___1=='1' & covid_mo_epii68___2=='1')~ '3',
     covid_mo_epii68___1=='1'~'1',
     covid_mo_epii68___2=='1'~'2',
     covid_mo_epii68___0=='1'~'0',
@@ -1449,6 +1601,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii68___1, -covid_mo_epii68___2, -covid_mo_epii68___0,-covid_mo_epii68___9) %>%
   mutate(epii69=case_when(
+    (covid_mo_epii69___1=='1' & covid_mo_epii69___2=='1')~ '3',
     covid_mo_epii69___1=='1'~'1',
     covid_mo_epii69___2=='1'~'2',
     covid_mo_epii69___0=='1'~'0',
@@ -1456,7 +1609,9 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii69___1, -covid_mo_epii69___2, -covid_mo_epii69___0,-covid_mo_epii69___9) %>%
+  #70s
   mutate(epii70=case_when(
+    (covid_mo_epii70___1=='1' & covid_mo_epii70___2=='1')~ '3',
     covid_mo_epii70___1=='1'~'1',
     covid_mo_epii70___2=='1'~'2',
     covid_mo_epii70___0=='1'~'0',
@@ -1465,6 +1620,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii70___1, -covid_mo_epii70___2, -covid_mo_epii70___0,-covid_mo_epii70___9) %>%
   mutate(epii71=case_when(
+    (covid_mo_epii71___1=='1' & covid_mo_epii71___2=='1')~ '3',
     covid_mo_epii71___1=='1'~'1',
     covid_mo_epii71___2=='1'~'2',
     covid_mo_epii71___0=='1'~'0',
@@ -1473,6 +1629,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii71___1, -covid_mo_epii71___2, -covid_mo_epii71___0,-covid_mo_epii71___9) %>%
   mutate(epii72=case_when(
+    (covid_mo_epii72___1=='1' & covid_mo_epii72___2=='1')~ '3',
     covid_mo_epii72___1=='1'~'1',
     covid_mo_epii72___2=='1'~'2',
     covid_mo_epii72___0=='1'~'0',
@@ -1481,6 +1638,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii72___1, -covid_mo_epii72___2, -covid_mo_epii72___0,-covid_mo_epii72___9) %>%
   mutate(epii73=case_when(
+    (covid_mo_epii73___1=='1' & covid_mo_epii73___2=='1')~ '3',
     covid_mo_epii73___1=='1'~'1',
     covid_mo_epii73___2=='1'~'2',
     covid_mo_epii73___0=='1'~'0',
@@ -1489,6 +1647,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii73___1, -covid_mo_epii73___2, -covid_mo_epii73___0,-covid_mo_epii73___9) %>%
   mutate(epii74=case_when(
+    (covid_mo_epii74___1=='1' & covid_mo_epii74___2=='1')~ '3',
     covid_mo_epii74___1=='1'~'1',
     covid_mo_epii74___2=='1'~'2',
     covid_mo_epii74___0=='1'~'0',
@@ -1497,6 +1656,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii74___1, -covid_mo_epii74___2, -covid_mo_epii74___0,-covid_mo_epii74___9) %>%
   mutate(epii75=case_when(
+    (covid_mo_epii75___1=='1' & covid_mo_epii75___2=='1')~ '3',
     covid_mo_epii75___1=='1'~'1',
     covid_mo_epii75___2=='1'~'2',
     covid_mo_epii75___0=='1'~'0',
@@ -1505,6 +1665,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii75___1, -covid_mo_epii75___2, -covid_mo_epii75___0,-covid_mo_epii75___9) %>%
   mutate(epii76=case_when(
+    (covid_mo_epii76___1=='1' & covid_mo_epii76___2=='1')~ '3',
     covid_mo_epii76___1=='1'~'1',
     covid_mo_epii76___2=='1'~'2',
     covid_mo_epii76___0=='1'~'0',
@@ -1513,6 +1674,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii76___1, -covid_mo_epii76___2, -covid_mo_epii76___0,-covid_mo_epii76___9) %>%
   mutate(epii77=case_when(
+    (covid_mo_epii77___1=='1' & covid_mo_epii77___2=='1')~ '3',
     covid_mo_epii77___1=='1'~'1',
     covid_mo_epii77___2=='1'~'2',
     covid_mo_epii77___0=='1'~'0',
@@ -1521,6 +1683,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii77___1, -covid_mo_epii77___2, -covid_mo_epii77___0,-covid_mo_epii77___9) %>%
   mutate(epii78=case_when(
+    (covid_mo_epii78___1=='1' & covid_mo_epii78___2=='1')~ '3',
     covid_mo_epii78___1=='1'~'1',
     covid_mo_epii78___2=='1'~'2',
     covid_mo_epii78___0=='1'~'0',
@@ -1529,6 +1692,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii78___1, -covid_mo_epii78___2, -covid_mo_epii78___0,-covid_mo_epii78___9) %>%
   mutate(epii79=case_when(
+    (covid_mo_epii79___1=='1' & covid_mo_epii79___2=='1')~ '3',
     covid_mo_epii79___1=='1'~'1',
     covid_mo_epii79___2=='1'~'2',
     covid_mo_epii79___0=='1'~'0',
@@ -1536,7 +1700,9 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii79___1, -covid_mo_epii79___2, -covid_mo_epii79___0,-covid_mo_epii79___9) %>%
+  #80s
   mutate(epii80=case_when(
+    (covid_mo_epii80___1=='1' & covid_mo_epii80___2=='1')~ '3',
     covid_mo_epii80___1=='1'~'1',
     covid_mo_epii80___2=='1'~'2',
     covid_mo_epii80___0=='1'~'0',
@@ -1545,6 +1711,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii80___1, -covid_mo_epii80___2, -covid_mo_epii80___0,-covid_mo_epii80___9) %>%
   mutate(epii81=case_when(
+    (covid_mo_epii81___1=='1' & covid_mo_epii81___2=='1')~ '3',
     covid_mo_epii81___1=='1'~'1',
     covid_mo_epii81___2=='1'~'2',
     covid_mo_epii81___0=='1'~'0',
@@ -1553,6 +1720,7 @@ mutate(epii21=case_when(
   )) %>% 
   select(-covid_mo_epii81___1, -covid_mo_epii81___2, -covid_mo_epii81___0,-covid_mo_epii81___9) %>%
   mutate(epii82=case_when(
+    (covid_mo_epii82___1=='1' & covid_mo_epii82___2=='1')~ '3',
     covid_mo_epii82___1=='1'~'1',
     covid_mo_epii82___2=='1'~'2',
     covid_mo_epii82___0=='1'~'0',
@@ -1561,6 +1729,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii82___1, -covid_mo_epii82___2, -covid_mo_epii82___0,-covid_mo_epii82___9) %>%
   mutate(epii83=case_when(
+    (covid_mo_epii83___1=='1' & covid_mo_epii83___2=='1')~ '3',
     covid_mo_epii83___1=='1'~'1',
     covid_mo_epii83___2=='1'~'2',
     covid_mo_epii83___0=='1'~'0',
@@ -1569,6 +1738,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii83___1, -covid_mo_epii83___2, -covid_mo_epii83___0,-covid_mo_epii83___9) %>%
   mutate(epii84=case_when(
+    (covid_mo_epii84___1=='1' & covid_mo_epii84___2=='1')~ '3',
     covid_mo_epii84___1=='1'~'1',
     covid_mo_epii84___2=='1'~'2',
     covid_mo_epii84___0=='1'~'0',
@@ -1577,6 +1747,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii84___1, -covid_mo_epii84___2, -covid_mo_epii84___0,-covid_mo_epii84___9) %>%
   mutate(epii85=case_when(
+    (covid_mo_epii85___1=='1' & covid_mo_epii85___2=='1')~ '3',
     covid_mo_epii85___1=='1'~'1',
     covid_mo_epii85___2=='1'~'2',
     covid_mo_epii85___0=='1'~'0',
@@ -1585,6 +1756,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii85___1, -covid_mo_epii85___2, -covid_mo_epii85___0,-covid_mo_epii85___9) %>%
   mutate(epii86=case_when(
+    (covid_mo_epii86___1=='1' & covid_mo_epii86___2=='1')~ '3',
     covid_mo_epii86___1=='1'~'1',
     covid_mo_epii86___2=='1'~'2',
     covid_mo_epii86___0=='1'~'0',
@@ -1593,6 +1765,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii86___1, -covid_mo_epii86___2, -covid_mo_epii86___0,-covid_mo_epii86___9) %>%
   mutate(epii87=case_when(
+    (covid_mo_epii87___1=='1' & covid_mo_epii87___2=='1')~ '3',
     covid_mo_epii87___1=='1'~'1',
     covid_mo_epii87___2=='1'~'2',
     covid_mo_epii87___0=='1'~'0',
@@ -1601,6 +1774,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii87___1, -covid_mo_epii87___2, -covid_mo_epii87___0,-covid_mo_epii87___9) %>%
   mutate(epii88=case_when(
+    (covid_mo_epii88___1=='1' & covid_mo_epii88___2=='1')~ '3',
     covid_mo_epii88___1=='1'~'1',
     covid_mo_epii88___2=='1'~'2',
     covid_mo_epii88___0=='1'~'0',
@@ -1609,6 +1783,7 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii88___1, -covid_mo_epii88___2, -covid_mo_epii88___0,-covid_mo_epii88___9) %>%
   mutate(epii89=case_when(
+    (covid_mo_epii89___1=='1' & covid_mo_epii89___2=='1')~ '3',
     covid_mo_epii89___1=='1'~'1',
     covid_mo_epii89___2=='1'~'2',
     covid_mo_epii89___0=='1'~'0',
@@ -1617,22 +1792,25 @@ mutate(epii21=case_when(
   )) %>%
   select(-covid_mo_epii89___1, -covid_mo_epii89___2, -covid_mo_epii89___0,-covid_mo_epii89___9) %>%
   mutate(epii90=case_when(
+    (covid_mo_epii90___1=='1' & covid_mo_epii90___2=='1')~ '3',
     covid_mo_epii90___1=='1'~'1',
     covid_mo_epii90___2=='1'~'2',
     covid_mo_epii90___0=='1'~'0',
     covid_mo_epii90___9=='1'~'9',
     TRUE ~NA_character_
-  )) %>% 
+  )) %>%
   select(-covid_mo_epii90___1, -covid_mo_epii90___2, -covid_mo_epii90___0,-covid_mo_epii90___9) %>%
   mutate(epii91=case_when(
+    (covid_mo_epii91___1=='1' & covid_mo_epii91___2=='1')~ '3',
     covid_mo_epii91___1=='1'~'1',
     covid_mo_epii91___2=='1'~'2',
     covid_mo_epii91___0=='1'~'0',
     covid_mo_epii91___9=='1'~'9',
     TRUE ~NA_character_
-  )) %>% 
+  )) %>%
   select(-covid_mo_epii91___1, -covid_mo_epii91___2, -covid_mo_epii91___0,-covid_mo_epii91___9) %>%
   mutate(epii92=case_when(
+    (covid_mo_epii92___1=='1' & covid_mo_epii92___2=='1')~ '3',
     covid_mo_epii92___1=='1'~'1',
     covid_mo_epii92___2=='1'~'2',
     covid_mo_epii92___0=='1'~'0',
@@ -1640,23 +1818,17 @@ mutate(epii21=case_when(
     TRUE ~NA_character_
   )) %>%
   select(-covid_mo_epii92___1, -covid_mo_epii92___2, -covid_mo_epii92___0,-covid_mo_epii92___9) %>%
-#rename 42 and 43  
-  rename(epii42 = covid_mo_epii42, epii43=covid_mo_epii43,epii_workall =covid_mo_epii_workall,epii_edu =covid_mo_epii_edu,
-         epii_home=covid_mo_epii_home,epii_social=covid_mo_epii_social,epii_economic=covid_mo_epii_economic,
-         epii_emotion=covid_mo_epii_emotion,epii_health=covid_mo_epii_health,epii_quarantine=covid_mo_epii_quarantine,
-         epii_infection=covid_mo_epii_infection,epii_positive=covid_mo_epii_positive,epii_overall=covid_mo_epii_overall,
-         epii_stressors=covid_mo_epii_stressors,epii_other=covid_mo_epii_other
-         ) %>%
+  #rename 42 and 43  
+  rename(epii42 = covid_mo_epii42, epii43=covid_mo_epii43,epiiworkall =covid_mo_epii_workall,epiiedu =covid_mo_epii_edu,
+         epiihome=covid_mo_epii_home,epiisocial=covid_mo_epii_social,epiieconomic=covid_mo_epii_economic,
+         epiiemotion=covid_mo_epii_emotion,epiihealth=covid_mo_epii_health,epiiquarantine=covid_mo_epii_quarantine,
+         epiiinfection=covid_mo_epii_infection,epiipositive=covid_mo_epii_positive,epiioverall=covid_mo_epii_overall,
+         epiistressors=covid_mo_epii_stressors,epiiother=covid_mo_epii_other) %>%
   relocate(epii42,.after=epii41)%>%relocate(epii43,.after=epii42)
-#monthly data clean 
-#for (i in seq_along(epii_months)){
-#  print(names(epii_months)[[i]])
- # print("sick")
-#}
 
 ###--- long to wide: edit for each month going forward) ------
 #rename redcap event name to months
-epii_months <- epii_months %>%
+epii_mo <- epii_mo %>%
   mutate(month_admin = case_when(
     redcap_event_name == "covid_questionnair_arm_1b" ~ "1",
     redcap_event_name == "covid_questionnair_arm_1c" ~ "2",
@@ -1745,7 +1917,7 @@ pss_month <- pss_month %>%
 
 keys <- c(1,1,1,-1,-1,1,-1,-1,1,1)
 
-pss_score<- pss[,c("covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4","covid1_pss5","covid1_pss6","covid1_pss7","covid1_pss8","covid1_pss9","covid1_pss10")]
+pss_score<- pss_initial[,c("covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4","covid1_pss5","covid1_pss6","covid1_pss7","covid1_pss8","covid1_pss9","covid1_pss10")]
 pss_score1 <- reverse.code(keys,pss_score)
 pss_score1 <- as.data.frame(pss_score1)
 
@@ -1753,8 +1925,8 @@ pss_score1 <- as.data.frame(pss_score1)
 pss_initial$pss_init_total<- rowSums(pss_score1[,c("covid1_pss1","covid1_pss2","covid1_pss3","covid1_pss4-","covid1_pss5-","covid1_pss6","covid1_pss7-","covid1_pss8-","covid1_pss9","covid1_pss10")])
 
 #sanity check (randomly score data manually to confirm that this is correct
-describe(pss$pss_init_total)
-ggplot(pss, mapping = aes(x = pss_init_total)) + geom_histogram()
+describe(pss_initial$pss_init_total)
+ggplot(pss_initial, mapping = aes(x = pss_init_total)) + geom_histogram()
 
 ###---- monthly PSS syntax-------
 pss_mo_score<- pss_month[,c("covid_mo_pss1","covid_mo_pss2","covid_mo_pss3","covid_mo_pss4","covid_mo_pss5","covid_mo_pss6","covid_mo_pss7","covid_mo_pss8","covid_mo_pss9","covid_mo_pss10")]
@@ -1763,7 +1935,7 @@ pss_score_monthly <- as.data.frame(pss_score_monthly)
 pss_month$pss_month_totalsc<- rowSums(pss_score_monthly[,c("covid_mo_pss1","covid_mo_pss2","covid_mo_pss3","covid_mo_pss4-","covid_mo_pss5-","covid_mo_pss6","covid_mo_pss7-","covid_mo_pss8-","covid_mo_pss9","covid_mo_pss10")])
 
 ###----write pss csv----------
-write.csv(pss,"/Users/rachelkwon/Desktop/covid/pss.csv",na='')
+write.csv(pss_initial,"/Users/rachelkwon/Desktop/covid/pss.csv",na='')
 write.csv(pss_month,"/Users/rachelkwon/Desktop/covid/pss_month.csv",na='')
 
 ###----SCHOOLING QUESTIONNAIRES - HOT MESS - inital -----
@@ -1848,8 +2020,8 @@ write.csv(school_init,"/Users/rachelkwon/Desktop/covid/school_init.csv",na='')
 write.csv(school_monthly,"/Users/rachelkwon/Desktop/covid/school_monthly.csv",na='')
 ###-------data request merge----------------------------------------------------------
 library(lubridate)
-merge1<-left_join(epii,pss,by=c("covid1_date"="covid1_date",'subj'='subj'))
-merge2 <- left_join(epii_months,pss_month,by=c("covid_mo_date"="covid_mo_date","subj"="subj"))
+merge1<-left_join(epii,pss_initial,by=c("covid1_date"="covid1_date",'subj'='subj'))
+merge2 <- left_join(epii_mo,pss_month,by=c("covid_mo_date"="covid_mo_date","subj"="subj"))
 merge1$DOBi<-as.Date(parse_date_time(merge1$DOBi, c('mdy')))
 merge1$ageChildM<-calc_age(merge1$DOBi,refDate = merge1$covid1_date,unit='month')
 
@@ -1857,12 +2029,15 @@ merge1$ageChildM<-calc_age(merge1$DOBi,refDate = merge1$covid1_date,unit='month'
 merge2$DOBi.x<-as.Date(parse_date_time(merge2$DOBi.x, c('mdy')))
 merge2$ageChildM<-calc_age(merge2$DOBi.x,refDate = merge2$covid_mo_date,unit='month')
 
-merge1<-merge1%>%select(-DOBi,-DOBf,-DOBm,)%>%
-select(-redcap_event_name)%>%
-  relocate(month_admin,.after="DOBm")
+merge1<-merge1%>%select(-DOBi,-DOBf,-DOBm,-eligibility, -redcap_event_name.x)%>%
+  relocate(ageChildM,.after="covid1_date") %>%
+  rename()
 
-write.csv(merge1,"/Users/rachelkwon/Desktop/covid/initialfull.csv",na='')
-write.csv(merge2,"/Users/rachelkwon/Desktop/covid/monthlyfull.csv",na='')
+merge2 <- merge2%>%select(-eligibility.x,-eligibility.y)%>%
+  relocate(ageChildM,.after="covid_mo_date")
+
+write.csv(merge1,"/Users/rachelkwon/Desktop/covid/initialfull_3.31.21.csv",na='')
+write.csv(merge2,"/Users/rachelkwon/Desktop/covid/monthlyfull_3.31.21.csv",na='')
 
 ###-----helper functions------
 #standardize dates
